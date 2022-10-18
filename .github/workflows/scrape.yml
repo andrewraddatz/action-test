@@ -3,9 +3,6 @@ name: Scrape latest data
 on:
   schedule:
     - cron:  '*/5 * * * *'
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 
@@ -22,7 +19,7 @@ jobs:
         echo "a" >> base.txt
     - name: Fetch latest data
       run: |-
-        curl "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/votes-remaining-page/national/president.json" | jq . > results.json
+        curl "www.github.com" results.json
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
