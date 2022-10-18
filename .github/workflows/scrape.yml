@@ -19,7 +19,7 @@ jobs:
         echo "a" > base.txt
     - name: Fetch latest data
       run: |-
-        curl "www.github.com" results.json
+        curl "www.github.com" > results.json
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
