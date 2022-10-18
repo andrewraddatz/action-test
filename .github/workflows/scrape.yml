@@ -16,7 +16,7 @@ jobs:
         fetch-depth: 0
     - name: echo something
       run: |-
-        echo "a" >> base.txt
+        echo "a" > base.txt
     - name: Fetch latest data
       run: |-
         curl "www.github.com" results.json
