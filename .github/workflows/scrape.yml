@@ -19,7 +19,7 @@ jobs:
         timestamp=$(date -u)
         echo "${timestamp}" > lastrun.txt
         echo "trying to pull something"
-        https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/votes-remaining-page/national/president.json" | jq . > results.json
+        curl "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/votes-remaining-page/national/president.json" | jq . > results.json
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
