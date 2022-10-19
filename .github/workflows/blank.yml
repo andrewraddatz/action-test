@@ -6,9 +6,9 @@ push:
       # schedule:
       # - cron: '*/5 * * * *'
 
-  jobs:
-    job1:
-      name: Debug
+jobs:
+  job1:
+    name: Debug
     runs-on: ubuntu-latest
 
     steps:
