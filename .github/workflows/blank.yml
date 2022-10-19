@@ -1,7 +1,10 @@
 name: Experiment
 on: 
-  schedule:
-  - cron: '*/5 * * * *'
+  push:
+    branches:
+    - trigger
+  # schedule:
+  # - cron: '*/5 * * * *'
 
 jobs:
   job1:
