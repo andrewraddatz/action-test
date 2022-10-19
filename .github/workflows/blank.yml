@@ -1,18 +1,34 @@
 name: Experiment
 on: 
-  push:
-    branches:
+push:
+  branches:
     - trigger
-  # schedule:
-  # - cron: '*/5 * * * *'
+      # schedule:
+      # - cron: '*/5 * * * *'
 
-jobs:
-  job1:
-    name: Debug
+  jobs:
+    job1:
+      name: Debug
     runs-on: ubuntu-latest
 
     steps:
-    - name: Git checkout
-      uses: actions/checkout@v3
-    - name: List files
-      run: ls
+      - name: Git checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          fetch-depth: 0
+    - name: Fetch latest data
+      run: |-
+        timestamp=$(date -u)
+        echo "${timestamp}" > lastrun.txt
+        echo "trying to pull something"
+        # curl "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/votes-remaining-page/national/president.json" | jq . > results.json
+        curl "www.stackoverflow.com/questions" | head -n 100 > stack.html
+    - name: Commit and push if it changed
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
